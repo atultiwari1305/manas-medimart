@@ -15,3 +15,14 @@ mongoose.connect("mongodb://localhost:27017/manas-medimart",{
     console.log(e)
     console.log("Connection to DB unsuccessful");
 })
+
+
+
+
+
+
+
+// saveInDB();
+// updateInDB();
+// findInDB();
+// deleteInDB();
