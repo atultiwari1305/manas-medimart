@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Item = require('../models/item');
 
-mongoose.connect("mongodb://localhost:27017/manas-medimart",{
+mongoose.connect("mongodb+srv://atulrajtiwari098:S1hUMvFDaRPOg9FP@cluster0.nobfwwq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",{
 }).then(()=>{
     console.log("Connection to DB successful");
     Item.find({})
