@@ -1,3 +1,13 @@
+.overlay{
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index: 2;
+    overflow: hidden;
+}
 .loginForm {
     padding: 10px;
     width: 30rem;
@@ -7,6 +17,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border: 2px solid #3c7a85;
+    z-index: 3;
   }
 
 .imageholder img{
@@ -22,7 +33,7 @@
     border-radius: 50%;
     border: 2px solid #3c7a85;
     position: absolute;
-    top: 5%;
+    top: 10%;
     left: 50%;
     transform: translate(-50%, 0%);
     z-index: 200;
@@ -30,9 +41,9 @@
 .formField{
     width: 90%;
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -45%);
 }
 .formField button{
     height: 50px;

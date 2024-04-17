@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdpageComponent } from './adpage.component';
+import { FrontCarouselComponent } from './front-carousel.component';
 
-describe('AdpageComponent', () => {
-  let component: AdpageComponent;
-  let fixture: ComponentFixture<AdpageComponent>;
+describe('FrontCarouselComponent', () => {
+  let component: FrontCarouselComponent;
+  let fixture: ComponentFixture<FrontCarouselComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdpageComponent]
+      imports: [FrontCarouselComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AdpageComponent);
+    fixture = TestBed.createComponent(FrontCarouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
