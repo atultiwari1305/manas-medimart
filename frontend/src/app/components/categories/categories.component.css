@@ -6,11 +6,12 @@
     flex-direction: column;
     justify-content: space-evenly;
     overflow: hidden;
-    padding: 0px 10px 0px 10px;
+    padding: 0px -10px 0px 10px;
 }
 .scroller{
     overflow-x: auto;
     overflow-y: hidden;
+    padding: 0px;
 }
 .categoriesBox h3{
     margin-top: 30px;
