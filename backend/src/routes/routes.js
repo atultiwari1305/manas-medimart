@@ -42,7 +42,11 @@ router.post('/register', async (req,res)=>{
     }
 })
 
-router.post('/login',(req,res)=>{
+router.post('/login', async (req,res)=>{
+    const record = await user.findOne({email:email})
+    if(record){
+        
+    }
     res.send("login user");
 })
 
