@@ -4,7 +4,7 @@
         <img src="assets/images/profile.png" alt="">
     </div>
     <div class="imageholder" style="width: 150px; height: 150px;"></div>
-    <form class="formField">
+    <form class="formField" [formGroup]="form" (submit)="submit()">
         <div class="row mb-3">
             <label for="name" class="col-sm-3 col-form-label">Name</label>
             <div class="col-sm-9">
@@ -26,7 +26,7 @@
         <div class="row mb-3">
             <label for="confirmPassword" class="col-sm-3 col-form-label">Confirm Password</label>
             <div class="col-sm-9">
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password">
+                <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password">
             </div>
         </div>
         <button type="submit" class="btn">Sign Up</button>
