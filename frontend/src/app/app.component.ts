@@ -28,7 +28,7 @@ export class AppComponent implements OnInit{
   constructor(private http : HttpClient){}
 
   ngOnInit():void{
-    this.http.get('https://manasmedimart.onrender.com/auth/register/user',{
+    this.http.get('https://manasmedimart.onrender.com/auth/user',{
       withCredentials:true
     }).subscribe((res:any)=>{
       this.isLoggedIn = true
