@@ -15,14 +15,3 @@ mongoose.connect("mongodb+srv://atulrajtiwari098:S1hUMvFDaRPOg9FP@cluster0.nobfw
     console.log(e)
     console.log("Connection to DB unsuccessful");
 })
-
-
-
-
-
-
-
-// saveInDB();
-// updateInDB();
-// findInDB();
-// deleteInDB();

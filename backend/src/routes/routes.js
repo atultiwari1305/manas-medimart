@@ -10,9 +10,11 @@ router.post('/register', async (req,res)=>{
     let email = req.body.email;
     let name = req.body.name;
     let password = req.body.password;
+    let confirmPassword = req.body.password;
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password,salt);
+    const hashedConfirmPassword = await bcrypt.hash(confirmPassword,salt);
 
     const record = await user.findOne({email:email})
     if(record){
@@ -23,7 +25,8 @@ router.post('/register', async (req,res)=>{
         const userCred = new user({
             name:name,
             email:email,
-            password:hashedPassword
+            password:hashedPassword,
+            confirmPassword:hashedConfirmPassword
         })
 
         const result = await userCred.save();
