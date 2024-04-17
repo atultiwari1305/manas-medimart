@@ -16,7 +16,7 @@ router.post('/register', async (req,res)=>{
 
     const record = await user.findOne({email:email})
     if(record){
-        return res.send(400).send({
+        return res.status(400).send({
             message: "Email is already registered"
         })
     }else{
