@@ -11,19 +11,12 @@ const app = express();
 
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:4200']
+    origin: ['https://manasmedimart.netlify.app']
 }));
 app.use(cookieParser());
 app.use(express.json());
 
 app.use("/auth",route);
-
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: true}));
-
-// Serve static files from the dist/browser folder and dist/server folder
-app.use(express.static(path.join(__dirname, "../../frontend/dist/frontend/browser")));
-app.use(express.static(path.join(__dirname, "../../frontend/dist/frontend/server")));
 
 app.get('/api/message', (req, res) => { 
     res.json({ message:  'API route connected' }); 
