@@ -78,7 +78,7 @@ router.get('/user',async (req,res)=>{
         const claims = jwt.verify(cookie,'secret')
         if(!claims){
             return res.status(401).send({
-                message : UnAuthorized
+                message : "UnAuthorized"
             })
         }
         const record = await user.findOne({_id:claims._id});
@@ -86,7 +86,7 @@ router.get('/user',async (req,res)=>{
         res.send(data);
     }catch(err){
         return res.status(401).send({
-            message : UnAuthorized
+            message : "UnAuthorized"
         })
     }
 })
