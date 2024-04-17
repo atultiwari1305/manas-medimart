@@ -20,16 +20,6 @@ app.use("/auth",route);
 
 app.get('/api/message', (req, res) => { 
     res.json({ message:  'API route connected' }); 
-}); 
-
-// Route for serving the browser index.html file
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/dist/frontend/browser/index.html'));
-});
-
-// Catch-all route to serve browser index.html if no other route matches
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/dist/frontend/browser/index.html'));
 });
 
 app.listen(3000, ()=>{

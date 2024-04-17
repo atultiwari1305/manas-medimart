@@ -20,11 +20,15 @@
           </li>
         </ul>
         <form class="d-flex" role="search">
-          <button class="btn btn-outline-success" type="submit">
+          <button class="btn btn-outline-success" type="submit" *ngIf="!isLoggedIn">
             <a routerLink="/login" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Login</a>
           </button>
-          <button class="btn btn-outline-success" type="submit">
+          <button class="btn btn-outline-success" type="submit" *ngIf="!isLoggedIn">
             <a routerLink="/register" routerLinkActive="activebutton" ariaCurrentWhenActive="page">SignUp</a>
+          </button>
+          <span>{{message}}</span>
+          <button class="btn btn-outline-success" (click)="logout()" type="submit" *ngIf="isLoggedIn">
+            <a routerLink="/" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Log Out</a>
           </button>
         </form>
       </div>

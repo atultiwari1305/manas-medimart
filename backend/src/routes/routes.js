@@ -46,15 +46,49 @@ router.post('/register', async (req,res)=>{
 })
 
 router.post('/login', async (req,res)=>{
-    const record = await user.findOne({email:email})
-    if(record){
-        
+    const record = await user.findOne({email:req.body.email})
+    if(!record){
+        return res.status(404).send({
+            message: "User not found"
+        })
     }
-    res.send("login user");
+    if(!(await bcrypt.compare(req.body.password,record.password))){
+        return res.status(404).send({
+            message: "Incorrect Password"
+        })
+    }
+    const token = jwt.sign({_id:record},"secret")
+    res.cookie("jwt",token,{
+        httpOnly:true,
+        maxAge: 24*60*60*1000
+    })
+    res.send({
+        message: "success"
+    })
 })
 
-router.get('/user',(req,res)=>{
-    res.send("user");
+router.post('/logout',(req,res)=>{
+    res.cookie('jwt','',{maxAge: 0})
+    res.send({message: "success"})
+})
+
+router.get('/user',async (req,res)=>{
+    try{
+        const cookie = req.cookies['jwt'];
+        const claims = jwt.verify(cookie,'secret')
+        if(!claims){
+            return res.status(401).send({
+                message : UnAuthorized
+            })
+        }
+        const record = await user.findOne({_id:claims._id});
+        const {password,...data} = await record.toJSON()
+        res.send(data);
+    }catch(err){
+        return res.status(401).send({
+            message : UnAuthorized
+        })
+    }
 })
 
 module.exports = router;
