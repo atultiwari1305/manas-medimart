@@ -26,7 +26,7 @@
           <button class="btn btn-outline-success" type="submit" *ngIf="!isLoggedIn">
             <a routerLink="/register" routerLinkActive="activebutton" ariaCurrentWhenActive="page">SignUp</a>
           </button>
-          <span>{{message}}</span>
+          <span *ngIf="isLoggedIn">Hi, {{message}}</span>
           <button class="btn btn-outline-success" (click)="logout()" type="submit" *ngIf="isLoggedIn">
             <a routerLink="/" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Log Out</a>
           </button>

@@ -45,7 +45,7 @@ export class LoginComponent {
       Swal.fire("Error","Please enter valid email address","error");
     }
     else{
-      this.http.post("https://manasmedimart.onrender.com/auth/register",user,{
+      this.http.post("https://manasmedimart.onrender.com/auth/login",user,{
         withCredentials: true
       }).subscribe(()=> this.router.navigate(['/']),(err)=>{
         Swal.fire("error",err.error.message,"error")

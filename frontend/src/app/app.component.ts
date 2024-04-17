@@ -32,7 +32,7 @@ export class AppComponent implements OnInit{
       withCredentials:true
     }).subscribe((res:any)=>{
       this.isLoggedIn = true
-      this.message = `Hi ${res.name}`;
+      this.message = `${res.name}`;
       Emitters.authEmitter.emit(true);
     },(err)=>{
       this.message = err;
