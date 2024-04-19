@@ -75,10 +75,10 @@ router.post('/logout',(req,res)=>{
 router.get('/user',async (req,res)=>{
     try{
         const cookie = req.cookies['jwt'];
-        const claims = jwt.verify(cookie,'secret')
+        const claims = jwt.verify(cookie,"secret")
         if(!claims){
             return res.status(401).send({
-                message : "UnAuthorized"
+                message : "UnAuthorized Access of User"
             })
         }
         const record = await user.findOne({_id:claims._id});
@@ -86,7 +86,7 @@ router.get('/user',async (req,res)=>{
         res.send(data);
     }catch(err){
         return res.status(401).send({
-            message : "UnAuthorized"
+            message : "UnAuthorized User"
         })
     }
 })
