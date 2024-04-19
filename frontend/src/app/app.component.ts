@@ -42,7 +42,7 @@ export class AppComponent implements OnInit{
   }
 
   logout():void{
-    this.http.post('https://manasmedimart.onrender.com/auth/register/logout',{},{
+    this.http.post('https://manasmedimart.onrender.com/auth/logout',{},{
       withCredentials: true
     }).subscribe(()=>{
       this.isLoggedIn = false;
