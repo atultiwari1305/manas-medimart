@@ -4,10 +4,10 @@
     <div class="imageholder">
         <img src="assets/images/profile.png" alt="">
     </div>
-    <div class="imageholder" [formGroup]="form" (submit)="submit()"></div>
-    <form class="formField">
+    <div class="imageholder"></div>
+    <form class="formField" [formGroup]="form" (submit)="submit()">
         <div class="row mb-3">
-            <label for="name" class="col-sm-3 col-form-label">Email</label>
+            <label for="email" class="col-sm-3 col-form-label">Email</label>
             <div class="col-sm-9">
                 <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email">
             </div>
