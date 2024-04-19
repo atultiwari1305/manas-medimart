@@ -72,23 +72,38 @@ router.post('/logout',(req,res)=>{
     res.send({message: "success"})
 })
 
-router.get('/users', async (req,res)=>{
-    try{
-        const cookie = req.cookies['jwt']
-        const claims = jwt.verify(cookie,"secret")
-        if(!claims){
+router.get('/users', async (req, res) => {
+    try {
+        const cookie = req.cookies['jwt'];
+        if (!cookie) {
             return res.status(401).send({
-                message : "UnAuthorized Access of User"
-            })
+                message: "Missing JWT token"
+            });
         }
-        const record = await user.findOne({_id:claims._id});
-        const {password, ...data} = await record.toJSON()
+        
+        const claims = jwt.verify(cookie, "secret");
+        if (!claims) {
+            return res.status(401).send({
+                message: "Invalid JWT token"
+            });
+        }
+
+        const record = await user.findOne({ _id: claims._id });
+        if (!record) {
+            return res.status(404).send({
+                message: "User not found"
+            });
+        }
+
+        const { password, ...data } = record.toJSON();
         res.send(data);
-    }catch(err){
-        return res.status(401).send({
-            message : "UnAuthorized User"
-        })
+    } catch (err) {
+        console.error("Error:", err);
+        return res.status(500).send({
+            message: "Internal server error"
+        });
     }
-})
+});
+
 
 module.exports = router;
