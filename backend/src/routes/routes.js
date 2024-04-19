@@ -53,11 +53,11 @@ router.post('/login', async (req,res)=>{
         })
     }
     if(!(await bcrypt.compare(req.body.password,record.password))){
-        return res.status(404).send({
+        return res.status(400).send({
             message: "Incorrect Password"
         })
     }
-    const token = jwt.sign({_id:record},"secret")
+    const token = jwt.sign({_id:record._id},"secret")
     res.cookie("jwt",token,{
         httpOnly:true,
         maxAge: 24*60*60*1000
