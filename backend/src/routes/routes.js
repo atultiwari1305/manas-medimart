@@ -72,9 +72,9 @@ router.post('/logout',(req,res)=>{
     res.send({message: "success"})
 })
 
-router.get('/user',async (req,res)=>{
+router.get('/users', async (req,res)=>{
     try{
-        const cookie = req.cookies['jwt'];
+        const cookie = req.cookies['jwt']
         const claims = jwt.verify(cookie,"secret")
         if(!claims){
             return res.status(401).send({
@@ -82,7 +82,7 @@ router.get('/user',async (req,res)=>{
             })
         }
         const record = await user.findOne({_id:claims._id});
-        const {password,...data} = await record.toJSON()
+        const {password, ...data} = await record.toJSON()
         res.send(data);
     }catch(err){
         return res.status(401).send({
