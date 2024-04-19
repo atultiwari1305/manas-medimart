@@ -8,7 +8,6 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule ,HttpClient} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Emitters } from './components/emitters/emitter';
 
 @Component({
   selector: 'app-root',
@@ -28,15 +27,13 @@ export class AppComponent implements OnInit{
   constructor(private http : HttpClient){}
 
   ngOnInit():void{
-    this.http.get('https://manasmedimart.onrender.com/auth/user',{
+    this.http.get('https://manasmedimart.onrender.com/auth/users',{
       withCredentials:true
-    }).subscribe((res:any)=>{
+    }).subscribe((res: any)=>{
       this.isLoggedIn = true
       this.message = `${res.name}`;
-      Emitters.authEmitter.emit(true);
     },(err)=>{
       this.message = err;
-      Emitters.authEmitter.emit(false);
     }
   )
   }
