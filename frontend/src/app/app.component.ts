@@ -34,7 +34,7 @@ export class AppComponent implements OnInit{
       this.isLoggedIn = true
       this.message = `${res.name}`;
     },(err)=>{
-      this.message = err;
+      this.message = "err";
     }
   )
   }
