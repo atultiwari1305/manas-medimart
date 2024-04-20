@@ -30,6 +30,7 @@ export class AppComponent implements OnInit{
     this.http.get('https://manasmedimart.onrender.com/auth/users',{
       withCredentials:true
     }).subscribe((res: any)=>{
+      console.log(res);
       this.isLoggedIn = true
       this.message = `${res.name}`;
     },(err)=>{
