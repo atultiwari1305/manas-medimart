@@ -23,7 +23,7 @@
           <button class="btn btn-outline-success" type="submit" (click)="login()"  *ngIf="!isLoggedIn">
             <a routerLink="/login" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Login</a>
           </button>
-          <button class="btn btn-outline-success" type="submit" (click)="login()" *ngIf="!isLoggedIn">
+          <button class="btn btn-outline-success" type="submit" (click)="signup()" *ngIf="!isLoggedIn">
             <a routerLink="/register" routerLinkActive="activebutton" ariaCurrentWhenActive="page">SignUp</a>
           </button>
           <span *ngIf="isLoggedIn">Hi, {{message}}</span>
