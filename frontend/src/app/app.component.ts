@@ -19,14 +19,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
   title = 'frontend';
   isLoggedIn = false;
   message = ''
 
   constructor(private http : HttpClient){}
 
-  ngOnInit():void{
+  signup():void{
+    this.http.get('https://manasmedimart.onrender.com/auth/users',{
+      withCredentials:true
+    }).subscribe((res: any)=>{
+      console.log(res);
+      this.isLoggedIn = true
+      this.message = `${res.name}`;
+    },(err)=>{
+      this.message = "err";
+    }
+  )
+  }
+  login():void{
     this.http.get('https://manasmedimart.onrender.com/auth/users',{
       withCredentials:true
     }).subscribe((res: any)=>{
