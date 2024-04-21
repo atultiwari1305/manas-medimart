@@ -10,7 +10,7 @@ router.post('/register', async (req,res)=>{
     let email = req.body.email;
     let name = req.body.name;
     let password = req.body.password;
-    let confirmPassword = req.body.password;
+    let confirmPassword = req.body.confirmPassword;
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password,salt);
@@ -59,7 +59,7 @@ router.post('/login', async (req,res)=>{
     }
     const token = jwt.sign({_id:record._id},"secret")
     res.cookie("jwt",token,{
-        httpOnly:true,
+        httpOnly:false,
         maxAge: 24*60*60*1000
     })
     res.send({
@@ -85,7 +85,7 @@ router.get('/users', async (req, res) => {
         if (!claims) {
             return res.status(401).send({
                 message: "Invalid JWT token"
-            });
+            }); t
         }
 
         const record = await user.findOne({ _id: claims._id });
