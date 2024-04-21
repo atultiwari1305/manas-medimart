@@ -27,7 +27,7 @@ export class AppComponent implements OnInit{
   constructor(private http : HttpClient){}
 
   ngOnInit():void{
-    this.http.get('https://manasmedimart.onrender.com/auth/users',{
+    this.http.get('http://manasmedimart.onrender.com/auth/users',{
       withCredentials:true
     }).subscribe((res: any)=>{
       console.log(res);
@@ -47,3 +47,5 @@ export class AppComponent implements OnInit{
     })
   }
 }
+
+``
