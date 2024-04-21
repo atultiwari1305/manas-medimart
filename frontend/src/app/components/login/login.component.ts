@@ -12,6 +12,9 @@ import Swal from 'sweetalert2'
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit{
+  isLoggedIn = false;
+  message='';
+
   form:FormGroup;
   constructor(
     private formBuilder:FormBuilder,
@@ -52,5 +55,16 @@ export class LoginComponent implements OnInit{
         (err)=>{Swal.fire("error",err.error.message,"error")
       })    
     }
+  }
+  login():void{
+    this.http.get('https://manasmedimart.onrender.com/auth/users',{
+      withCredentials:true
+    }).subscribe((res: any)=>{
+      this.isLoggedIn = true
+      this.message = `${res.name}`;
+    },(err)=>{
+      this.message = "err";
+    }
+  )
   }
 }

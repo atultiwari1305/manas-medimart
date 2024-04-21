@@ -26,30 +26,6 @@ export class AppComponent{
 
   constructor(private http : HttpClient){}
 
-  signup():void{
-    this.http.get('https://manasmedimart.onrender.com/auth/users',{
-      withCredentials:true
-    }).subscribe((res: any)=>{
-      console.log(res);
-      this.isLoggedIn = true
-      this.message = `${res.name}`;
-    },(err)=>{
-      this.message = "err";
-    }
-  )
-  }
-  login():void{
-    this.http.get('https://manasmedimart.onrender.com/auth/users',{
-      withCredentials:true
-    }).subscribe((res: any)=>{
-      this.isLoggedIn = true
-      this.message = `${res.name}`;
-    },(err)=>{
-      this.message = "err";
-    }
-  )
-  }
-
   logout():void{
     this.http.post('https://manasmedimart.onrender.com/auth/logout',{},{
       withCredentials: true

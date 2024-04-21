@@ -12,6 +12,9 @@ import Swal from 'sweetalert2'
   styleUrl: './register.component.css'
 })
 export class RegisterComponent implements OnInit{
+  isLoggedIn = false;
+  message = ''
+  
   form:FormGroup;
   constructor(
     private formBuilder:FormBuilder,
@@ -54,5 +57,18 @@ export class RegisterComponent implements OnInit{
         Swal.fire("error",err.error.message,"error")
       })
     }
+  }
+
+  signup():void{
+    this.http.get('https://manasmedimart.onrender.com/auth/users',{
+      withCredentials:true
+    }).subscribe((res: any)=>{
+      console.log(res);
+      this.isLoggedIn = true
+      this.message = `${res.name}`;
+    },(err)=>{
+      this.message = "err";
+    }
+  )
   }
 }
