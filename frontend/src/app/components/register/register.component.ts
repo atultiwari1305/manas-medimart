@@ -53,7 +53,11 @@ export class RegisterComponent implements OnInit{
     else{
       this.http.post("https://manasmedimart.onrender.com/auth/register",user,{
         withCredentials: true
-      }).subscribe(()=> this.router.navigate(['/']),(err)=>{
+      }).subscribe(()=> {
+        this.signup();
+          this.router.navigate(['/']
+        )},
+        (err)=>{
         Swal.fire("error",err.error.message,"error")
       })
     }

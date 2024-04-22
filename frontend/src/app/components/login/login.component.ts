@@ -51,7 +51,10 @@ export class LoginComponent implements OnInit{
       this.http.post("https://manasmedimart.onrender.com/auth/login",user,{
         withCredentials: true
       }).subscribe(
-        (res)=> this.router.navigate(['/']),
+        (res)=> {
+          this.login()
+          this.router.navigate(['/'],
+          )},
         (err)=>{Swal.fire("error",err.error.message,"error")
       })    
     }
