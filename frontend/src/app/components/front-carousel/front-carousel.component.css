@@ -20,6 +20,10 @@
     border-radius: 10px;
 }
 
+img{
+    border-radius: 10px;
+}
+
 .sidecar{
     height: 70vh;
     display: flex;
