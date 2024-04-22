@@ -51,7 +51,8 @@ export class LoginComponent implements OnInit{
       this.http.post("https://manasmedimart.onrender.com/auth/login",user,{
         withCredentials: true
       }).subscribe(
-        (res)=> {
+        (res:any)=> {
+          document.cookie = `jwt=${res.token}; path=/;`;
           this.login()
           this.router.navigate(['/'],
           )},
