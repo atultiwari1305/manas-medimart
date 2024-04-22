@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit{
         withCredentials: true
       }).subscribe(
         (res:any)=> {
-          document.cookie = `jwt=${res.token}; path=/;`;
           this.login()
           this.router.navigate(['/'],
           )},
