@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Output, EventEmitter} from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
@@ -35,5 +35,7 @@ export class AppComponent{
       this.isLoggedIn = false;
     })
   }
+
+  @Output() scrollToSection = new EventEmitter<string>();
 }
 
