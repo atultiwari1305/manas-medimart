@@ -1,10 +1,13 @@
 const {Router} = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const user = require('../models/item')
 
 const router = Router();
+
+app.use(cookieParser());
 
 router.post('/register', async (req,res)=>{
     let email = req.body.email;
@@ -80,7 +83,6 @@ router.get('/users', async (req, res) => {
                 message: "Missing JWT token"
             });
         }
-        
         const claims = jwt.verify(cookie, "secret");
         if (!claims) {
             return res.status(401).send({
