@@ -85,7 +85,7 @@ router.get('/users', async (req, res) => {
         if (!claims) {
             return res.status(401).send({
                 message: "Invalid JWT token"
-            }); t
+            });
         }
 
         const record = await user.findOne({ _id: claims._id });
