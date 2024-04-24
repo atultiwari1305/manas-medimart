@@ -7,7 +7,7 @@ const user = require('../models/item')
 
 const router = Router();
 
-app.use(cookieParser());
+router.use(cookieParser());
 
 router.post('/register', async (req,res)=>{
     let email = req.body.email;
