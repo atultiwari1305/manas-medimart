@@ -39,7 +39,8 @@ router.post('/register', async (req,res)=>{
         const token = jwt.sign({_id:_id},"secret")
         res.cookie("jwt",token,{
             httpOnly: true,
-            maxAge: 24*60*60*1000
+            maxAge: 24*60*60*1000,
+            sameSite: 'strict'
         })
 
         res.json({
@@ -63,7 +64,8 @@ router.post('/login', async (req,res)=>{
     const token = jwt.sign({_id:record._id},"secret")
     res.cookie("jwt",token,{
         httpOnly: true,
-        maxAge: 24*60*60*1000
+        maxAge: 24*60*60*1000,
+        sameSite: 'strict'
     })
     res.send({
         message: "success"
@@ -78,6 +80,7 @@ router.post('/logout',(req,res)=>{
 router.get('/users', async (req, res) => {
     try {
         const cookie = req.cookies['jwt'];
+        console.log(req.cookies)
         if (!cookie) {
             return res.status(401).send({
                 message: "Missing JWT token"
