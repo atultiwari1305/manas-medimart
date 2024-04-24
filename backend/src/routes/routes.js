@@ -59,7 +59,7 @@ router.post('/login', async (req,res)=>{
     }
     const token = jwt.sign({_id:record._id},"secret")
     res.cookie("jwt",token,{
-        httpOnly:false,
+        httpOnly: true,
         maxAge: 24*60*60*1000
     })
     res.send({
