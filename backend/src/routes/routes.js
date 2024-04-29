@@ -1,93 +1,89 @@
-const { Router } = require('express');
+const {Router} = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-const user = require('../models/item');
+
+const user = require('../models/item')
 
 const router = Router();
 
 router.use(cookieParser());
 
-// Define common cookie options
-const cookieOptions = {
-    httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    sameSite: 'strict'
-};
-
-// Set domain based on environment
-if (process.env.NODE_ENV === 'production') {
-    // Production domain
-    cookieOptions.domain = '.onrender.com';
-} else {
-    // Development domain
-    cookieOptions.domain = 'localhost';
-}
-
-router.post('/register', async (req, res) => {
+router.post('/register', async (req,res)=>{
     let email = req.body.email;
     let name = req.body.name;
     let password = req.body.password;
     let confirmPassword = req.body.confirmPassword;
 
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    const hashedConfirmPassword = await bcrypt.hash(confirmPassword, salt);
+    const hashedPassword = await bcrypt.hash(password,salt);
+    const hashedConfirmPassword = await bcrypt.hash(confirmPassword,salt);
 
-    const record = await user.findOne({ email: email })
-    if (record) {
+    const record = await user.findOne({email:email})
+    if(record){
         return res.status(400).send({
             message: "Email is already registered"
         })
-    } else {
+    }else{
         const userCred = new user({
-            name: name,
-            email: email,
-            password: hashedPassword,
-            confirmPassword: hashedConfirmPassword
+            name:name,
+            email:email,
+            password:hashedPassword,
+            confirmPassword:hashedConfirmPassword
         })
 
         const result = await userCred.save();
 
-        // JWT token
-        const { _id } = await result.toJSON()
-        const token = jwt.sign({ _id: _id }, "secret")
-        res.cookie("jwt", token, cookieOptions);
+        //JWT token
+        const {_id} = await result.toJSON()
+        const token = jwt.sign({_id:_id},"secret")
+        res.cookie("jwt",token,{
+            domain: '.onrender.com',
+            httpOnly: true,
+            maxAge: 24*60*60*1000,
+            sameSite: 'strict'
+        })
 
         res.json({
-            id: result._id
+            id:result._id
         })
     }
 })
 
-router.post('/login', async (req, res) => {
-    const record = await user.findOne({ email: req.body.email })
-    if (!record) {
+router.post('/login', async (req,res)=>{
+    const record = await user.findOne({email:req.body.email})
+    if(!record){
         return res.status(404).send({
             message: "User not found"
         })
     }
-    if (!(await bcrypt.compare(req.body.password, record.password))) {
+    if(!(await bcrypt.compare(req.body.password,record.password))){
         return res.status(400).send({
             message: "Incorrect Password"
         })
     }
-    const token = jwt.sign({ _id: record._id }, "secret")
+    const token = jwt.sign({_id:record._id},"secret")
 
-    res.cookie("jwt", token, cookieOptions);
+    res.cookie("jwt",token,{
+        domain: '.onrender.com',
+        httpOnly: true,
+        maxAge: 24*60*60*1000,
+        sameSite: 'strict'
+    })
     res.send({
         message: "success"
     })
 })
 
-router.post('/logout', (req, res) => {
-    res.clearCookie('jwt', cookieOptions)
-    res.send({ message: "success" })
+router.post('/logout',(req,res)=>{
+    res.cookie('jwt','',{maxAge: 0})
+    res.send({message: "success"})
 })
 
 router.get('/users', async (req, res) => {
     try {
         const cookie = req.cookies['jwt'];
+        console.log(req.cookies)
         if (!cookie) {
             return res.status(401).send({
                 message: "Missing JWT token"
@@ -116,5 +112,6 @@ router.get('/users', async (req, res) => {
         });
     }
 });
+
 
 module.exports = router;
