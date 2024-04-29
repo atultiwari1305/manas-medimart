@@ -4,10 +4,35 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
 const user = require('../models/item')
+const Medicine = require('../models/medicine');
 
 const router = Router();
 
 router.use(cookieParser());
+
+router.get('/medicines', async (req, res) => {
+    try {
+      const medicines = await Medicine.find();
+      res.json(medicines);
+    } catch (error) {
+      console.error('Error fetching medicines:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+router.post('/addMed', async (req,res)=>{
+    let name = req.body.name;
+    let description = req.body.description;
+
+    const medDetails = new Medicine({
+        name:name,
+        description:description
+    })
+    const result = await medDetails.save();
+    res.json({
+        id:result._id
+    })
+})
 
 router.post('/register', async (req,res)=>{
     let email = req.body.email;
