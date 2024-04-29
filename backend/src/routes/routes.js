@@ -38,6 +38,7 @@ router.post('/register', async (req,res)=>{
         const {_id} = await result.toJSON()
         const token = jwt.sign({_id:_id},"secret")
         res.cookie("jwt",token,{
+            domain: '.onrender.com',
             httpOnly: true,
             maxAge: 24*60*60*1000,
             sameSite: 'strict'
@@ -62,7 +63,9 @@ router.post('/login', async (req,res)=>{
         })
     }
     const token = jwt.sign({_id:record._id},"secret")
+
     res.cookie("jwt",token,{
+        domain: '.onrender.com',
         httpOnly: true,
         maxAge: 24*60*60*1000,
         sameSite: 'strict'

@@ -6,7 +6,7 @@ require("./db/connect")
 const app = express();
 
 app.use(cors({
-    origin: '*',
+    origin: 'https://manasmedimart.netlify.app',
     credentials: true
 }));
 
