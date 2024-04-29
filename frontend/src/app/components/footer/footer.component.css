@@ -1,10 +1,14 @@
-.footer {
+.footer1 {  
+
+  bottom: 0;
+  width: 100%;
     background-color: #f8f9fa;
     padding: 40px 0;
     color: #666;
+    height: 25vh;
   }
   
-  .footer h5 {
+  .footer1 h5 {
     color: #333;
   }
   
@@ -31,7 +35,7 @@
     color: #333;
   }
 @media screen and (max-width: 767px) {
-    .footer{
+    .footer1{
         height: 25vh;
     }
 }  

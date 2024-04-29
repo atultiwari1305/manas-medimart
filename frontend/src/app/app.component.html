@@ -10,7 +10,7 @@
             <a routerLink="/" routerLinkActive="activebutton" ariaCurrentWhenActive="page" class="nav-link active" aria-current="page">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Categories</a>
+            <a class="nav-link" routerLink="/catalog">Catalog</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Brands</a>
@@ -35,7 +35,7 @@
     </div>
 </nav>
 
-<main>
+<div class="routerBox">
   <router-outlet></router-outlet>
-</main>
+</div>
 <app-footer></app-footer>

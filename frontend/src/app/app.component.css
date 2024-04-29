@@ -22,3 +22,6 @@
     margin: 5px;
     font-size: large;
 }
+.routerBox{
+  min-height: calc(100vh - 25vh);
+}
