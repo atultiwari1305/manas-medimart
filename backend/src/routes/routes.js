@@ -10,6 +10,24 @@ const router = Router();
 
 router.use(cookieParser());
 
+router.delete('/medicines/:medicineId', async (req, res) => {
+    const { medicineId } = req.params;
+  
+    try {
+      // Find the medicine by ID and remove it
+      const deletedMedicine = await Medicine.findByIdAndDelete(medicineId);
+  
+      if (!deletedMedicine) {
+        return res.status(404).json({ message: 'Medicine not found' });
+      }
+  
+      res.status(200).json({ message: 'Medicine removed successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
 router.get('/medicines', async (req, res) => {
     try {
       const medicines = await Medicine.find();
