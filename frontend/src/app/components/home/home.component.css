@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin: auto;
+    margin-left: 1px;
     margin-bottom: 5px;
 }
 .mainBox img{
@@ -79,9 +79,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-top: 5px;
 }
 .categoriesBox .rows .cols{
     width: 245px;
+    margin: 0px 20px;
 }
 .categoriesBox .rows .cols .colorDiv{
     width: 245px;
@@ -127,7 +129,7 @@
     }
     .categoriesBox .rows .cols{
         width: 150px;
-        margin: 20px;
+        margin: 15px;
     }
     .categoriesBox .rows .cols .colorDiv{
         width: 150px;
@@ -187,9 +189,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-top: 5px;
 }
 .categoriesBox1 .rows .cols{
     width: 245px;
+    margin: 0px 20px;
 }
 .categoriesBox1 .rows .cols .colorDiv{
     width: 245px;
@@ -235,7 +239,7 @@
     }
     .categoriesBox1 .rows .cols{
         width: 150px;
-        margin: 20px;
+        margin: 15px;
     }
     .categoriesBox1 .rows .cols .colorDiv{
         width: 150px;

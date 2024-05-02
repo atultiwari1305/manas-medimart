@@ -36,6 +36,23 @@
   }
 @media screen and (max-width: 767px) {
     .footer1{
-        height: 25vh;
+        height: 20vh;
+        padding: 20px 0px;
+    }
+    .container{
+      height: 15vh;
+      width: 100vw;
+    }
+    h5{
+      font-size: medium;
+      margin-bottom: 3px;
+    }
+    p{
+      font-size: x-small;
+      margin: 2px;
+      word-wrap: break-word;
+    }
+    .followBar{
+      margin-top: 10px;
     }
 }  
