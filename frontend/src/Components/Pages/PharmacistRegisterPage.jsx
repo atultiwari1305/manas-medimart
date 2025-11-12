@@ -18,6 +18,7 @@ import {
   useToast,
   FormErrorMessage,
 } from "@chakra-ui/react";
+import API_BASE_URL from "../../config";
 
 import Logo from "../UI/Images/medimartLogo.png";
 
@@ -107,7 +108,7 @@ export const PharmacistRegisterForm = () => {
 
     try {
       const response = await Axios.post(
-        "http://localhost:8001/doc_register",
+        `${API_BASE_URL}/doc_register`,
         payload,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

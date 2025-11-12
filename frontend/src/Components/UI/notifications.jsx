@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Badge, Box,IconButton, Popover, PopoverContent, PopoverTrigger, VStack } from '@chakra-ui/react';
 import { BellIcon, CloseIcon ,WarningIcon } from '@chakra-ui/icons'; 
 import { Text,Flex } from '@chakra-ui/react';
+import API_BASE_URL from "../../config";
 
 const Notifications = ({ notifications }) => {
   const [currentNotifications, setCurrentNotifications] = useState(notifications);
@@ -19,7 +20,7 @@ const Notifications = ({ notifications }) => {
       setIsPopoverOpen(false);
     }
     setCurrentNotifications(updatedNotifications);
-    const response = await axios.post('http://localhost:8001/deleteNotif', {notif:notificationD}, {
+    const response = await axios.post(`${API_BASE_URL}/deleteNotif`, {notif:notificationD}, {
         withCredentials: true,
       });
       

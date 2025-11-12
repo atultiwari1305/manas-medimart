@@ -6,6 +6,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { AiOutlineShopping } from "react-icons/ai";
 import { AiOutlineTeam } from "react-icons/ai";
 import { AiFillCaretUp } from "react-icons/ai";
+import API_BASE_URL from "../../config";
 
 function Shopping({currentMonth}) {
   const [orderStats, setOrderStats] = useState({ creditOrders: 0, walletOrders: 0, cashOrders: 0 ,cancelledOrders:0});
@@ -13,7 +14,7 @@ function Shopping({currentMonth}) {
     // fetch total number of orders 
     const fetchOrderStats = async () => {
       try {
-        const response=await axios.post('http://localhost:8001/order/salesExtraStats',{month:currentMonth},{ withCredentials: true });
+        const response=await axios.post(`${API_BASE_URL}/order/salesExtraStats`,{month:currentMonth},{ withCredentials: true });
         console.log(response.data);
         if(response.data!=='no sales found for this month') {
             setOrderStats(response.data);

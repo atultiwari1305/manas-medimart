@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import { Buffer } from 'buffer';
 import styled from 'styled-components'
+import API_BASE_URL from "../../config";
+
 function Orders({currentMonth}) {
     const [orders, setOrders] = useState([]);
 
@@ -11,7 +13,7 @@ function Orders({currentMonth}) {
             
             try {
                 
-                const response = await axios.post('http://localhost:8001/order/salesOrder', { month:currentMonth }, { withCredentials: true });
+                const response = await axios.post(`${API_BASE_URL}/order/salesOrder`, { month:currentMonth }, { withCredentials: true });
                 console.log(response.data);
                 setOrders(response.data);
             } catch (error) {

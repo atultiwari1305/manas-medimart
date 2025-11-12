@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { Box, Input, Button, FormControl, FormLabel, Heading, Text } from '@chakra-ui/react';
 import axios from 'axios';
+import API_BASE_URL from "../../config";
 
 function OTP() {
   const [otp, setOTP] = useState('');
@@ -16,7 +17,7 @@ function OTP() {
 
   const checkOTP = async () => {
     try {
-      const response = await axios.post("http://localhost:8001/checkOTP", { otp, email });
+      const response = await axios.post(`${API_BASE_URL}/checkOTP`, { otp, email });
       console.log(response.data);
       if (response.data.success) {
         setMessage('');
@@ -32,7 +33,7 @@ function OTP() {
 
   const resetPass = async () => {
     try {
-      const response = await axios.post("http://localhost:8001/resetPass", { newPassword, email });
+      const response = await axios.post(`${API_BASE_URL}/resetPass`, { newPassword, email });
       console.log(response.data);
       if (response.data.success) {
         setMessage('Password changed successfully.');

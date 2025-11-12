@@ -6,6 +6,8 @@ import {Elements} from "@stripe/react-stripe-js"
 import CheckoutForm from "../UI/Payment";
 import { useNavigate } from "react-router-dom";
 import '../UI/button.css'
+import API_BASE_URL from "../../config";
+
 import {
   Box,
   Text}
@@ -26,7 +28,7 @@ export default function CreditPayment() {
 
     useEffect(() => {
         // Fetch publishableKey using Axios
-        axios.get("http://localhost:8001/order/config",{withCredentials:true})
+        axios.get(`${API_BASE_URL}/order/config`,{withCredentials:true})
           .then((response) => {
             console.log(response.data)
             const { publishableKey } = response.data;
@@ -39,7 +41,7 @@ export default function CreditPayment() {
       
       useEffect(() => {
         // Create PaymentIntent as soon as the page loads using Axios
-        axios.post("http://localhost:8001/order/orderCredit", {},{ withCredentials: true }, {
+        axios.post(`${API_BASE_URL}/order/orderCredit`, {},{ withCredentials: true }, {
           headers: { 'Content-Type': 'application/json' }
         })
           .then((response) => {

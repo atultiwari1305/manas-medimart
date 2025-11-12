@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import MedicinalUseFilter from '../UI/MedicinalUseFilter';
 import { AreaChart, Area, Tooltip, ResponsiveContainer,XAxis,YAxis } from "recharts";
+import API_BASE_URL from "../../config";
 
 function Analytic({currentMonth}) {
   const [selectedMedicine, setSelectedMedicine] = useState('Panadol');
@@ -10,14 +11,14 @@ function Analytic({currentMonth}) {
   const [medicineSales, setMedicineSales] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8001/admin/MedNames')
+    fetch(`${API_BASE_URL}/admin/MedNames`)
       .then((response) => response.json())
       .then((data) => setMedicine(data))
       .catch((error) => console.error('Error fetching medicinal uses:', error));
       const fetchMedSales = async () => {
             
         try {
-            const response = await axios.post('http://localhost:8001/order/sales', { month:currentMonth,med:selectedMedicine }, { withCredentials: true });
+            const response = await axios.post(`${API_BASE_URL}/order/sales`, { month:currentMonth,med:selectedMedicine }, { withCredentials: true });
             console.log(response.data);
             setMedicineSales(response.data);
         } catch (error) {

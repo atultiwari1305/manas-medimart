@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import '../UI/home.css';
 import { ChatIcon, Icon, EmailIcon,PhoneIcon,BellIcon } from "@chakra-ui/icons";
 import RR from './RR'
+import API_BASE_URL from "../../config";
 
 
 import {
@@ -69,7 +70,7 @@ export const Home = () => {
         navigate("/login");
       }
       const { data } = await axios.post(
-        "http://localhost:8001/",
+        `${API_BASE_URL}/`,
         {},
         { withCredentials: true }
       );
@@ -79,7 +80,7 @@ export const Home = () => {
         toast(`Hello ${user}`, {
           position: "top-right",
         });
-        const fullUserData = await axios.get(`http://localhost:8001/patient/myInfo/${user}`);
+        const fullUserData = await axios.get(`${API_BASE_URL}/patient/myInfo/${user}`);
         setFullUser(fullUserData.data);
       } else {
         removeCookie("token");
@@ -109,7 +110,7 @@ export const Home = () => {
   //     console.log("in1");
   //     if (username) {
   //       console.log("in2");
-  //       const { data } = await axios.get(`http://localhost:8001/patient/myInfo/${username}`);
+  //       const { data } = await axios.get(`${API_BASE_URL}/patient/myInfo/${username}`);
   //       setFullUser(data);
   //       console.log(fullUser);  
   //     }
@@ -143,7 +144,7 @@ export const Home = () => {
       // Send the address to the backend
       const newAddress = `${addressName},${streetName},${buildingNumber},${floor},${apartment}`.replaceAll(' ', '');
       const response = await axios.post(
-        `http://localhost:8001/patient/addDeliveryAddress/${username}`,
+        `${API_BASE_URL}/patient/addDeliveryAddress/${username}`,
         { address:newAddress },
         { withCredentials: true }
       );
@@ -198,7 +199,7 @@ export const Home = () => {
     };
   
     try {
-      const response = await axios.post('http://localhost:8001/changePassword', data, {
+      const response = await axios.post(`${API_BASE_URL}/changePassword`, data, {
         withCredentials: true,
       });
   

@@ -4,6 +4,8 @@ import { AreaChart, Area, Tooltip, ResponsiveContainer,XAxis, YAxis, CartesianGr
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { useState, useEffect } from 'react';
 import axios from "axios";
+import API_BASE_URL from "../../config";
+
 function Sales({currentMonth}) {
     const [monthlyRevenueData, setMonthlyRevenueData] = useState([]);
 
@@ -11,7 +13,7 @@ function Sales({currentMonth}) {
         const fetchMonthlyRevenue = async () => {
             
             try {
-                const response = await axios.post('http://localhost:8001/order/salesDaily', { month:currentMonth }, { withCredentials: true });
+                const response = await axios.post(`${API_BASE_URL}/order/salesDaily`, { month:currentMonth }, { withCredentials: true });
                 setMonthlyRevenueData(response.data);
             } catch (error) {
                 console.error('Error fetching monthly revenue:', error);

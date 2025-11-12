@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Flex, Input, Button, Heading, Text } from '@chakra-ui/react';
 import axios from 'axios';
+import API_BASE_URL from "../../config";
 
 function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ function ForgotPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8001/sendOTP", { email });
+      const response = await axios.post(`${API_BASE_URL}/sendOTP`, { email });
       console.log(response);
       if (response.data === "password reset otp sent to your email account") {
         setMessage('OTP sent successfully. Check your email for the OTP.');

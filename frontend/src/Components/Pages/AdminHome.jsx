@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import SidebarAdmin from './sideAdmin';
 import WithSubnavigation from './navbar';
+import API_BASE_URL from "../../config";
 import {
   Modal,
   ModalOverlay,
@@ -66,7 +67,7 @@ export const AdminHome = () => {
         navigate("/login");
       }
       const { data } = await axios.post(
-        "http://localhost:8001",
+        `${API_BASE_URL}`,
         {},
         { withCredentials: true }
       );
@@ -100,7 +101,7 @@ export const AdminHome = () => {
   useEffect(() => {
     const fetchFullUser = async () => {
       if (username) {
-        const { data } = await axios.get(`http://localhost:8001/admin/myInfo/${username}`);
+        const { data } = await axios.get(`${API_BASE_URL}/admin/myInfo/${username}`);
         setFullUser(data);
         console.log(fullUser);
       }
@@ -127,7 +128,7 @@ export const AdminHome = () => {
     };
   
     try {
-      const response = await axios.post('http://localhost:8001/changePassword', data, {
+      const response = await axios.post(`${API_BASE_URL}/changePassword`, data, {
         withCredentials: true,
       });
   

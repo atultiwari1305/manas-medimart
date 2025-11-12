@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
+import API_BASE_URL from "../../config";
+
 import {
   Box,
   Button,
@@ -98,7 +100,7 @@ export const PatientRegisterForm = () => {
 
     try {
       const response = await Axios.post(
-        "http://localhost:8001/patient/Patientregister",
+        `${API_BASE_URL}/patient/Patientregister`,
         formData
       );
       if (response.data.message !== "User already exists") {

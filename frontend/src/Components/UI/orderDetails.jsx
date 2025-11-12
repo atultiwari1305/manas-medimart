@@ -12,6 +12,7 @@ import {
   AlertTitle,
   AlertDescription,
 } from '@chakra-ui/react';
+import API_BASE_URL from "../../config";
 
 import {
   MDBCard,
@@ -44,7 +45,7 @@ const OrderDetailsPage = () => {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
-        const response = await axios.get('http://localhost:8001/patient/orderDetails', {
+        const response = await axios.get(`${API_BASE_URL}/patient/orderDetails`, {
           withCredentials: true,
         }); // Replace with your actual endpoint
         //setOrderDetailsArray(response.data);
@@ -100,7 +101,7 @@ const OrderDetailsPage = () => {
   };
   const handleCancelOrder = async (orderId) => {
     try {
-      const response = await axios.post('http://localhost:8001/order/cancel-order', {
+      const response = await axios.post(`${API_BASE_URL}/order/cancel-order`, {
         orderId:orderId,
       }, { withCredentials: true });
   

@@ -120,7 +120,7 @@ export const BouncyCardsFeatures = () => {
       {/* Info Cards Section */}
       <Box w={{ base: "100%", md: "85%" }}>
         <Heading fontSize={{ base: "2xl", md: "3xl" }} textAlign="center" mb={8}>
-          Why Choose PillStack?
+          Why Choose MediMart?
         </Heading>
         <Grid templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap={6}>
           {infoCards.map(renderCard)}

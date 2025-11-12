@@ -27,9 +27,10 @@ import ChatMessagesDoctor from './Components/Pages/chatMessagesDoctor.jsx';
 import SalesReport  from './Components/Pages/SalesReport.jsx';
 import io from 'socket.io-client';
 import LandingPage from './Components/Pages/LandingPage.jsx';
+import API_BASE_URL from "./config.js";
 
 
-const socket = io.connect("http://localhost:8001");
+const socket = io.connect(`${API_BASE_URL}`);
 
 function App() {
   

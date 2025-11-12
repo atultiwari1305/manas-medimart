@@ -48,6 +48,7 @@ import { Buffer } from 'buffer';
 import Navigation from "../UI/Navigation";
 import '../UI/innerPages.css';
 import SidebarAdmin from '../Pages/sideAdmin';
+import API_BASE_URL from "../../config";
 
 
 function PharmacistReqs() {
@@ -65,7 +66,7 @@ function PharmacistReqs() {
     useEffect(() => {
         const getReqs = async () => {
             try {
-            const { data } = await axios.get("http://localhost:8001/admin/applications", {
+            const { data } = await axios.get(`${API_BASE_URL}/admin/applications`, {
                 withCredentials: true,
             });
             // sort by date
@@ -93,7 +94,7 @@ function PharmacistReqs() {
         // router.post('/applications/accept-registeration/:id',acceptRegRequest);
         
         await axios.post(
-          `http://localhost:8001/admin/applications/accept-registeration/${viewReq._id}`,
+          `${API_BASE_URL}/admin/applications/accept-registeration/${viewReq._id}`,
           {},
           {
             withCredentials: true,
@@ -110,7 +111,7 @@ function PharmacistReqs() {
       try {  
         console.log(viewReq._id);      
         await axios.post(
-          `http://localhost:8001/admin/applications/reject-registeration/${viewReq._id}`,
+          `${API_BASE_URL}/admin/applications/reject-registeration/${viewReq._id}`,
           {},
           {
             withCredentials: true,

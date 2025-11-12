@@ -36,7 +36,7 @@ function LandingPage() {
       >
         <GridItem />
         <GridItem justifySelf="center">
-          <Image src={logo} alt="PillStack Logo" h={20} />
+          <Image src={logo} alt="MediMart Logo" h={20} />
         </GridItem>
         <GridItem justifySelf="end">
           <HStack spacing={4}>

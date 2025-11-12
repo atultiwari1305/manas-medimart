@@ -84,7 +84,7 @@ const Screen = () => {
 
     <div style={{ position: "relative", zIndex: "0", display: "grid", placeContent: "center", overflow: "hidden", borderRadius: "20px", background: "#FFFFFF", height: "100%", width: "100%" , transform: "translate(-2.5%, -1%)"}}>
     <Flex justifyContent={'center'} alignItems={'center'} p={5} >
-    <Image w={'80%'} src={logo} alt="PillStack Logo" style={{transform: "translatey(-200%)"}} />
+    <Image w={'80%'} src={logo} alt="MediMart Logo" style={{transform: "translatey(-200%)"}} />
     </Flex>
       <svg
         width="50"

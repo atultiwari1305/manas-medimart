@@ -11,6 +11,7 @@ import '../UI/home.css';
 import WithSubnavigation from './navbar';
 import { ChatIcon, Icon, EmailIcon,PhoneIcon,BellIcon } from "@chakra-ui/icons";
 import RR from './RR'
+import API_BASE_URL from "../../config";
 
 
 import {
@@ -71,7 +72,7 @@ function DoctorHome() {
         navigate("/login");
       }
       const { data } = await axios.post(
-        "http://localhost:8001",
+        `${API_BASE_URL}`,
         {},
         { withCredentials: true }
       );
@@ -95,7 +96,7 @@ function DoctorHome() {
   useEffect(() => {
     const fetchFullUser = async () => {
       if (username) {
-        const { data } = await axios.get(`http://localhost:8001/pharmacist/myInfo/${username}`);
+        const { data } = await axios.get(`${API_BASE_URL}/pharmacist/myInfo/${username}`);
         setFullUser(data);
         console.log(fullUser);
       }
@@ -137,7 +138,7 @@ function DoctorHome() {
     };
   
     try {
-      const response = await axios.post('http://localhost:8001/changePassword', data, {
+      const response = await axios.post(`${API_BASE_URL}/changePassword`, data, {
         withCredentials: true,
       });
   

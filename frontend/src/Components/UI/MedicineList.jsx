@@ -20,6 +20,7 @@ import { toast } from 'react-toastify';
 import Navigation from "../UI/Navigation";
 import '../UI/innerPages.css';
 import Sidebar from '../Pages/side';
+import API_BASE_URL from "../../config";
 
 
 export function MedicineList() {
@@ -43,13 +44,13 @@ export function MedicineList() {
 
   useEffect(() => {
     // Fetch medicines and their medicinal uses from your server's API endpoint
-    fetch('http://localhost:8001/admin/availableMedicines')
+    fetch(`${API_BASE_URL}/admin/availableMedicines`)
       .then((response) => response.json())
       .then((data) => setMedicines(data))
       .catch((error) => console.error('Error fetching medicine data:', error));
       //Fetch User Prescriptions
     // Fetch the list of unique medicinal uses
-    fetch('http://localhost:8001/admin/MedicinalUse')
+    fetch(`${API_BASE_URL}/admin/MedicinalUse`)
       .then((response) => response.json())
       .then((data) => setMedicinalUses(data))
       .catch((error) => console.error('Error fetching medicinal uses:', error));
@@ -57,7 +58,7 @@ export function MedicineList() {
 useEffect(()=>{
   const Prescription = async () => {
     try {
-    const { data } = await axios.post("http://localhost:8001/patient/Prescriptions",{}, {
+    const { data } = await axios.post(`${API_BASE_URL}/patient/Prescriptions`,{}, {
         withCredentials: true,
     });
     // setFiltered( 
@@ -73,7 +74,7 @@ Prescription();
 
   const addToCart = async (medicine, quantity) => {
     try {
-      const response = await axios.post('http://localhost:8001/cart', {
+      const response = await axios.post(`${API_BASE_URL}/cart`, {
         productId: medicine._id,
         quantity,
       }, { withCredentials: true });
@@ -137,7 +138,7 @@ Prescription();
     }
     const prescriptionMed=async(prescID)=>{
       console.log(prescID);
-      const response= await axios.post("http://localhost:8001/patient/PrescribedMedicene",{prescID}, {
+      const response= await axios.post(`${API_BASE_URL}/patient/PrescribedMedicene`,{prescID}, {
       withCredentials: true,
   });
     // setMedicines([]);

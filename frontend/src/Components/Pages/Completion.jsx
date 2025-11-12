@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import '../UI/button.css'
 import { Buffer } from 'buffer';
+import API_BASE_URL from "../../config";
 
 import {
   MDBCard,
@@ -39,7 +40,7 @@ export default function Completion() {
     // You can use libraries like Axios or the built-in Fetch API
     // Example with Axios:
     
-    axios.post('http://localhost:8001/order/orderCredit/confirm', {
+    axios.post(`${API_BASE_URL}/order/orderCredit/confirm`, {
       address:address,
       intentId:intentid,
     }, { withCredentials: true })

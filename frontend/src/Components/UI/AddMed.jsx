@@ -14,6 +14,7 @@ import {
     AlertTitle,
     AlertDescription,
   } from '@chakra-ui/react'
+import API_BASE_URL from "../../config";
 
 export const AddMedicine = () => {
   const [medicineData, setMedicineData] = useState({
@@ -73,7 +74,7 @@ export const AddMedicine = () => {
 
     try {
      
-      const response = await axios.post('http://localhost:8001/pharmacist/createMedicine', formData, {
+      const response = await axios.post(`${API_BASE_URL}/pharmacist/createMedicine`, formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',

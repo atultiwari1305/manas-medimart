@@ -4,8 +4,9 @@ import ScrollToButtom from 'react-scroll-to-bottom';
 import "../../App.css";
 import { useParams } from "react-router-dom";
 import io from 'socket.io-client';
+import API_BASE_URL from "../../config";
 
-const socket = io.connect("http://localhost:8001");
+const socket = io.connect(`${API_BASE_URL}`);
 
 function ChatMessages({ socket }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -24,7 +25,7 @@ function ChatMessages({ socket }) {
   useEffect(() => {
     const fetchPatientList = async () => {
       try {
-        const response = await axios.get(`http://localhost:8001/pharmacist/getPatientUsername/${username}`);
+        const response = await axios.get(`${API_BASE_URL}/pharmacist/getPatientUsername/${username}`);
         setPatientList(response.data.patientUsernames);
       } catch (error) {
         console.error('Error fetching doctor list:', error);
@@ -32,7 +33,7 @@ function ChatMessages({ socket }) {
     };
     const fetchDoctorList = async () => {
       try {
-        const response = await axios.get(`http://localhost:8001/pharmacist/getDoctorUsername/${username}`);
+        const response = await axios.get(`${API_BASE_URL}/pharmacist/getDoctorUsername/${username}`);
         setDoctorList(response.data.doctortUsernames);
         console.log(doctorList);
       } catch (error) {
@@ -46,7 +47,7 @@ function ChatMessages({ socket }) {
   const handleDoctorClick = async (patientUsername) => {
     try {
 
-      const response = await axios.post(`http://localhost:8001/pharmacist/ChatDoctor/${username}/${patientUsername}`);
+      const response = await axios.post(`${API_BASE_URL}/pharmacist/ChatDoctor/${username}/${patientUsername}`);
       console.log("mmmmmmm");
       const { room: chatRoom } = response.data;
       const { messages: messageList } = response.data;
@@ -64,7 +65,7 @@ function ChatMessages({ socket }) {
   };
   const handlePharmacistClick = async (doctorUsername) => {
     try {
-      const response = await axios.post(`http://localhost:8001/pharmacist/ChatDoctor2/${username}/${doctorUsername}`);
+      const response = await axios.post(`${API_BASE_URL}/pharmacist/ChatDoctor2/${username}/${doctorUsername}`);
       const { room: chatRoom, messages: messageList } = response.data;
       socket.emit('join_room', chatRoom);
 
@@ -92,7 +93,7 @@ function ChatMessages({ socket }) {
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage("");
 
-      const response = await axios.post(`http://localhost:8001/pharmacist/sendMessage/${selectedPatient}/${username}`, {
+      const response = await axios.post(`${API_BASE_URL}/pharmacist/sendMessage/${selectedPatient}/${username}`, {
         message: currentMessage
       });
     }
@@ -110,7 +111,7 @@ function ChatMessages({ socket }) {
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage('');
 
-      const response = await axios.post(`http://localhost:8001/pharmacist/sendMessage2/${selectedDoctor}/${username}`, {
+      const response = await axios.post(`${API_BASE_URL}/pharmacist/sendMessage2/${selectedDoctor}/${username}`, {
         message: currentMessage,
       });
     }

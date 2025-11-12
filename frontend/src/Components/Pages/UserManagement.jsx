@@ -52,6 +52,7 @@ import Navigation from "../UI/Navigation";
 import '../UI/innerPages.css';
 import SidebarAdmin from '../Pages/sideAdmin';
 
+import API_BASE_URL from "../../config";
 
 
 function UserManagement() {
@@ -69,7 +70,7 @@ function UserManagement() {
     useEffect(() => {
         const getUsers = async () => {
             try {
-            const { data } = await axios.get("http://localhost:8001/admin/allUsers", {
+            const { data } = await axios.get(`${API_BASE_URL}/admin/allUsers`, {
                 withCredentials: true,
             });
             // setFiltered( 
@@ -94,7 +95,7 @@ function UserManagement() {
                 id: id, 
                 role: role
             }
-          const { data } = await axios.post("http://localhost:8001/admin/removeUser", body ,
+          const { data } = await axios.post(`${API_BASE_URL}/admin/removeUser`, body ,
             {
               withCredentials: true,
             }
@@ -130,7 +131,7 @@ function UserManagement() {
             email: mail,
           };
           const { data } = await axios.post(
-            "http://localhost:8001/administration",
+            `${API_BASE_URL}/administration`,
             body,
             {
               withCredentials: true,

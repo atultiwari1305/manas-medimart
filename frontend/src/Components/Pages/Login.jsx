@@ -25,6 +25,7 @@ import {
 
 import Logo from "../UI/Images/medimartLogo.png";
 import "react-toastify/dist/ReactToastify.css";
+import API_BASE_URL from "../../config";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ export const Login = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8001/login",
+        `${API_BASE_URL}/login`,
         { username, password },
         { withCredentials: true }
       );

@@ -7,6 +7,7 @@ import { Navbar } from '../UI/navbar';
 import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import Navigation from "../UI/Navigation";
+import API_BASE_URL from "../../config";
 
 const iconPath =
   "M18.571 7.221c0 0.201-0.145 0.391-0.29 0.536l-4.051 3.951 0.96 5.58c0.011 0.078 0.011 0.145 0.011 0.223 0 0.29-0.134 0.558-0.458 0.558-0.156 0-0.313-0.056-0.446-0.134l-5.011-2.634-5.011 2.634c-0.145 0.078-0.29 0.134-0.446 0.134-0.324 0-0.469-0.268-0.469-0.558 0-0.078 0.011-0.145 0.022-0.223l0.96-5.58-4.063-3.951c-0.134-0.145-0.279-0.335-0.279-0.536 0-0.335 0.346-0.469 0.625-0.513l5.603-0.815 2.511-5.078c0.1-0.212 0.29-0.458 0.547-0.458s0.446 0.246 0.547 0.458l2.511 5.078 5.603 0.815c0.268 0.045 0.625 0.179 0.625 0.513z";
@@ -24,7 +25,7 @@ const iconPath =
         // Define a function to fetch medicine details
         const fetchMedicineDetails = async () => {
           try {
-            const response=await axios.post('http://localhost:8001/patient/medicine/details',{medicineID:medicineID},{ withCredentials: true });
+            const response=await axios.post(`${API_BASE_URL}/patient/medicine/details`,{medicineID:medicineID},{ withCredentials: true });
     
             setMedicine(response.data.currentMed);
             setRelatedMed(response.data.relatedMed);
@@ -39,7 +40,7 @@ const iconPath =
       }, [medicineID]); 
       const addToCart = async (medicine, quantity) => {
         try {
-          const response = await axios.post('http://localhost:8001/cart', {
+          const response = await axios.post(`${API_BASE_URL}/cart`, {
             productId: medicine._id,
             quantity,
           }, { withCredentials: true });

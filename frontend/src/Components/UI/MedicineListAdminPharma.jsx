@@ -9,6 +9,7 @@ import '../UI/button.css';
 import Navigation from "../UI/Navigation";
 import '../UI/innerPages.css';
 import SidebarDR from '../Pages/sideDR';
+import API_BASE_URL from "../../config";
 
 export function MedicineListControl() {
   const [medicines, setMedicines] = useState([]);
@@ -21,13 +22,13 @@ export function MedicineListControl() {
 
   useEffect(() => {
     // Fetch medicines and their medicinal uses from your server's API endpoint
-    fetch('http://localhost:8001/admin/availableMedicinesPH')
+    fetch(`${API_BASE_URL}/admin/availableMedicinesPH`)
       .then((response) => response.json())
       .then((data) => setMedicines(data))
       .catch((error) => console.error('Error fetching medicine data:', error));
 
     // Fetch the list of unique medicinal uses
-    fetch('http://localhost:8001/admin/MedicinalUse')
+    fetch(`${API_BASE_URL}/admin/MedicinalUse`)
       .then((response) => response.json())
       .then((data) => setMedicinalUses(data))
       .catch((error) => console.error('Error fetching medicinal uses:', error));
@@ -36,7 +37,7 @@ export function MedicineListControl() {
   // Function to change medicine status
   const changeMedicineStatus = (medicineId) => {
     // Update the medicine status in the backend
-    fetch(`http://localhost:8001/pharmacist/changeMedicineStatus/${medicineId}`, {
+    fetch(`${API_BASE_URL}/pharmacist/changeMedicineStatus/${medicineId}`, {
       method: 'PUT',
     })
       .then((response) => response.json())

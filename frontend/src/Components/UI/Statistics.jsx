@@ -7,6 +7,8 @@ import { AiFillExperiment } from "react-icons/ai";
 import { AiFillDollarCircle } from "react-icons/ai";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import { AiOutlineArrowDown } from "react-icons/ai";
+import API_BASE_URL from "../../config";
+
 const Statistic=({currentMonth})=>{
     const [orderStats, setOrderStats] = useState([{ totalOrders: 0, totalItems: 0, totalRevenue: 0 }]);
     const [orderChanges, setOrderChanges] = useState({ totalChange: 0, itemsChange: 0, revenueChange: 0 });
@@ -15,7 +17,7 @@ const Statistic=({currentMonth})=>{
         // fetch total number of orders 
         const fetchOrderStats = async () => {
           try {
-            const response=await axios.post('http://localhost:8001/order/salesStats',{month:currentMonth},{ withCredentials: true });
+            const response=await axios.post(`${API_BASE_URL}/order/salesStats`,{month:currentMonth},{ withCredentials: true });
            // console.log(response.data);
             if(response.data!=='no sales found for this month') {
                 setOrderStats(response.data);
@@ -48,8 +50,8 @@ const Statistic=({currentMonth})=>{
     
                 }
     
-                const responseCurrentMonth = await axios.post('http://localhost:8001/order/salesStats', { month: currentMonth }, { withCredentials: true });
-                const responsePreviousMonth = await axios.post('http://localhost:8001/order/salesStats', { month: previousMonth }, { withCredentials: true });
+                const responseCurrentMonth = await axios.post(`${API_BASE_URL}/order/salesStats`, { month: currentMonth }, { withCredentials: true });
+                const responsePreviousMonth = await axios.post(`${API_BASE_URL}/order/salesStats`, { month: previousMonth }, { withCredentials: true });
                 console.log( responseCurrentMonth.data);
                 console.log( responsePreviousMonth.data);
 

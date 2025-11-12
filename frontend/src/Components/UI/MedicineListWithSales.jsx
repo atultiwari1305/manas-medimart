@@ -9,6 +9,7 @@ import axios from 'axios';
 import Navigation from "../UI/Navigation";
 import '../UI/innerPages.css';
 import SidebarDR from '../Pages/sideDR';
+import API_BASE_URL from "../../config";
 
 export function MedicineListwithSales() {
   const [medicines, setMedicines] = useState([]);
@@ -20,12 +21,12 @@ export function MedicineListwithSales() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:8001/admin/availableMedicines')
+    fetch(`${API_BASE_URL}/admin/availableMedicines`)
       .then((response) => response.json())
       .then((data) => setMedicines(data))
       .catch((error) => console.error('Error fetching medicine data:', error));
 
-    fetch('http://localhost:8001/admin/MedicinalUse')
+    fetch(`${API_BASE_URL}/admin/MedicinalUse`)
       .then((response) => response.json())
       .then((data) => setMedicinalUses(data))
       .catch((error) => console.error('Error fetching medicinal uses:', error));
@@ -46,7 +47,7 @@ export function MedicineListwithSales() {
   const updateMedicine = async (updatedMedicine) => {
     try {
       // Update the medicine's details and price on your server
-      await axios.put(`http://localhost:8001/admin/availableMedicines/${updatedMedicine._id}`, updatedMedicine);
+      await axios.put(`${API_BASE_URL}/admin/availableMedicines/${updatedMedicine._id}`, updatedMedicine);
 
       // Update the medicine in your local state
       const updatedMedicines = medicines.map((medicine) => (
