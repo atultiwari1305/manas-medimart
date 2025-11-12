@@ -52,7 +52,10 @@ app.use(cors(corsOptions));
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3001",
+    origin: [
+    "https://manasmedimart.netlify.app", // ✅ your production frontend
+    "http://localhost:3001",              // ✅ for local development (optional)
+  ],
     methods: ["GET", "POST"],
   },
 });
