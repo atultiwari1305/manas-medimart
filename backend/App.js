@@ -39,7 +39,10 @@ app.use(cookies());
 
 // CORS setup
 const corsOptions = {
-  origin: "http://localhost:3001",
+  origin: [
+    "https://manasmedimart.netlify.app", // ✅ your production frontend
+    "http://localhost:3001",              // ✅ for local development (optional)
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 };
