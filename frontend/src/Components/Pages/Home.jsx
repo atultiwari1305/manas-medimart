@@ -94,7 +94,7 @@ export const Home = () => {
   }
 
   const { data } = await axios.post(
-    `${API_BASE_URL}/current-user`,
+    `${API_BASE_URL}`,
     {},
     { withCredentials: true }
   );
