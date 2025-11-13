@@ -64,32 +64,30 @@ export const Home = () => {
   };
 
 
-  // useEffect(() => {
-  //   const verifyCookie = async () => {
-  //     if (!cookies.token) {
-  //       navigate("/login");
-  //     }
-  //     const { data } = await axios.post(
-  //       `${API_BASE_URL}/`,
-  //       {},
-  //       { withCredentials: true }
-  //     );
-  //     const { status, user } = data;
-  //     setUsername(user);
-  //     if (status) {
-  //       toast(`Hello ${user}`, {
-  //         position: "top-right",
-  //       });
-  //       const fullUserData = await axios.get(`${API_BASE_URL}/patient/myInfo/${user}`);
-  //       setFullUser(fullUserData.data);
-  //     } else {
-  //       removeCookie("token");
-  //       navigate("/"); 
-  //     }
-  //   };
-  //   verifyCookie();
-  // }, [cookies, navigate, removeCookie]);
-  const verifyCookie = async () => {
+  useEffect(() => {
+    // const verifyCookie = async () => {
+    //   if (!cookies.token) {
+    //     navigate("/login");
+    //   }
+    //   const { data } = await axios.post(
+    //     `${API_BASE_URL}/`,
+    //     {},
+    //     { withCredentials: true }
+    //   );
+    //   const { status, user } = data;
+    //   setUsername(user);
+    //   if (status) {
+    //     toast(`Hello ${user}`, {
+    //       position: "top-right",
+    //     });
+    //     const fullUserData = await axios.get(`${API_BASE_URL}/patient/myInfo/${user}`);
+    //     setFullUser(fullUserData.data);
+    //   } else {
+    //     removeCookie("token");
+    //     navigate("/"); 
+    //   }
+    // };
+    const verifyCookie = async () => {
   if (!cookies.token) {
     navigate("/login");
     return;
@@ -123,6 +121,8 @@ export const Home = () => {
   }
 };
 
+    verifyCookie();
+  }, [cookies, navigate, removeCookie]);
 
 
   const openChangePasswordModal = () => {
