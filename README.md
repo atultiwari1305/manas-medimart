@@ -1,7 +1,7 @@
 ![Alt text](screenshots/image.png)
 
 
-PillStack is an online pharamcy linked to PillStack's online clinic. This MERN stack project aims to eradicate the challenges associated with physical hospital visits by providing a complete digital healthcare solution.
+MediMart is an online pharamcy linked to MediMart's online clinic. This MERN stack project aims to eradicate the challenges associated with physical hospital visits by providing a complete digital healthcare solution.
 
 # Motivation
 
